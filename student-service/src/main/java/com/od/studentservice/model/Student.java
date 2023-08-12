@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "students")
@@ -12,8 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Student {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int studentNumber;
     private String name;
     private int age;
     private String parentName;

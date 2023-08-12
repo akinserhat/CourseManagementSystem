@@ -1,6 +1,7 @@
 package com.od.studentservice.service;
 
 import com.od.studentservice.dto.StudentDto;
+import com.od.studentservice.dto.StudentIdDto;
 import com.od.studentservice.exception.StudentNotFoundException;
 import com.od.studentservice.mappers.ModelMapperService;
 import com.od.studentservice.repository.StudentRepository;
@@ -23,19 +24,18 @@ public class StudentService {
                 .map(student -> modelMapperService.forResponse()
                         .map(student, StudentDto.class)).collect(Collectors.toList());
     }
-
-    public StudentDto findStudentByName(String name) {
-        return studentRepository.findStudentByName(name)
-                .map(student -> modelMapperService.forResponse()
-                        .map(student, StudentDto.class)).orElseThrow
-                        (() -> new StudentNotFoundException(name + " isimli öğrenci bulunamamıştır"));
-    }
-
-    public StudentDto findStudentDetailsById(Long id) {
+    public StudentDto getStudentById(String id) {
         return studentRepository.findById(id)
                 .map(student -> modelMapperService.forResponse()
                         .map(student, StudentDto.class)).orElseThrow
-                        (() -> new StudentNotFoundException(id + " numaralı id bulunamamıştır"));
+                        (() -> new StudentNotFoundException(id + " -> ID_NOT_FOUND"));
 
+    }
+
+    public StudentIdDto getStudentByNumber(int studentNumber) {
+        return studentRepository.findStudentByStudentNumber(studentNumber)
+                .map(student -> modelMapperService.forResponse()
+                        .map(student, StudentIdDto.class)).orElseThrow
+                        (() -> new StudentNotFoundException(studentNumber + " -> COULD_NOT_FOUND"));
     }
 }

@@ -29,9 +29,9 @@ public class StudentServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Student student1 = new Student(1, "Akın Serhat Göksel", 13, "Pervin", "05518017773", 1500);
-		Student student2 = new Student(2, "Can Doğan", 9, "Emine", "05518017774", 1500);
-		Student student3 = new Student(3, "Lavinya Doğan", 9, "Ozan", "05518017775", 1500);
+		Student student1 = new Student(null, 1, "Akın Serhat Göksel", 13, "Pervin", "05518017773", 1500);
+		Student student2 = new Student(null, 2, "Can Doğan", 9, "Emine", "05518017774", 1500);
+		Student student3 = new Student(null, 3, "Lavinya Doğan", 9, "Ozan", "05518017775", 1500);
 
 		List<Student> studentList = studentRepository.saveAll(Arrays.asList(student1, student2, student3));
 

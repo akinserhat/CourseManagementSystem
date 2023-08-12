@@ -1,6 +1,7 @@
 package com.od.studentservice.controller;
 
 import com.od.studentservice.dto.StudentDto;
+import com.od.studentservice.dto.StudentIdDto;
 import com.od.studentservice.service.StudentService;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,12 @@ public class StudentController {
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
-        return ResponseEntity.ok(studentService.findStudentDetailsById(id));
+    @GetMapping("/id/{id}")
+    public ResponseEntity<StudentDto> getStudentById(@PathVariable String id) {
+        return ResponseEntity.ok(studentService.getStudentById(id));
+    }
+    @GetMapping("/number/{studentNumber}")
+    public ResponseEntity<StudentIdDto> getStudentByNumber(@PathVariable int studentNumber) {
+        return ResponseEntity.ok(studentService.getStudentByNumber(studentNumber));
     }
 }
