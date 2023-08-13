@@ -33,7 +33,7 @@ public class StudentService {
     }
 
     public StudentIdDto getStudentByNumber(int studentNumber) {
-        return studentRepository.findStudentByStudentNumber(studentNumber)
+        return studentRepository.getStudentByStudentNumber(studentNumber)
                 .map(student -> modelMapperService.forResponse()
                         .map(student, StudentIdDto.class)).orElseThrow
                         (() -> new StudentNotFoundException(studentNumber + " -> COULD_NOT_FOUND"));
