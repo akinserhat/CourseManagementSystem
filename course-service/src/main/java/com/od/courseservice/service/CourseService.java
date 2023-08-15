@@ -42,7 +42,7 @@ public class CourseService {
                 .getBody().getStudentId();
 
         Course course = courseRepository.findById(request.getId())
-                .orElseThrow(() -> new CourseNotFoundException("Course could not found by id -> " + request.getId()));
+                .orElseThrow(() -> new CourseNotFoundException("Course could not found by id: " + request.getId()));
 
         course.getStudentCourseList().add(studentId);
         courseRepository.save(course);

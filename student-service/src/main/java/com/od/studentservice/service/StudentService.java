@@ -28,7 +28,7 @@ public class StudentService {
         return studentRepository.findById(id)
                 .map(student -> modelMapperService.forResponse()
                         .map(student, StudentDto.class)).orElseThrow
-                        (() -> new StudentNotFoundException(id + " -> ID_NOT_FOUND"));
+                        (() -> new StudentNotFoundException(id + " id numaralı öğrenci bulunamamıştır."));
 
     }
 
@@ -36,6 +36,6 @@ public class StudentService {
         return studentRepository.getStudentByStudentNumber(studentNumber)
                 .map(student -> modelMapperService.forResponse()
                         .map(student, StudentIdDto.class)).orElseThrow
-                        (() -> new StudentNotFoundException(studentNumber + " -> COULD_NOT_FOUND"));
+                        (() -> new StudentNotFoundException(studentNumber + " numaralı öğrenci bulunamamıştır."));
     }
 }

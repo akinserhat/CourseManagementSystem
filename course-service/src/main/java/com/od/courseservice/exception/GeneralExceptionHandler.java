@@ -13,7 +13,8 @@ public class GeneralExceptionHandler {
     }
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<?> handle(StudentNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ExceptionMessage> handle(StudentNotFoundException exception) {
+        return new ResponseEntity<>(exception.getExceptionMessage(),
+                HttpStatus.resolve(exception.getExceptionMessage().status()));
     }
 }
