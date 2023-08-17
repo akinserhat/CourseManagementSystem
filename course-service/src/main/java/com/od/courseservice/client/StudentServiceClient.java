@@ -17,7 +17,7 @@ public interface StudentServiceClient {
 
     @GetMapping("/id/{id}")
     @CircuitBreaker(name = "getStudentByIdCircuitBreaker", fallbackMethod = "getStudentByIdFallback")
-    ResponseEntity<StudentDto> getStudentById(@PathVariable String id);
+    ResponseEntity<StudentDto> getStudentById(@PathVariable(value = "id") String id);
 
     default ResponseEntity<StudentDto> getStudentByIdFallback(String id, Exception exception) {
         logger.info("Student could not found by id " + id + ", returning default StudentDto object");
@@ -27,7 +27,7 @@ public interface StudentServiceClient {
 
     @GetMapping("/number/{studentNumber}")
     @CircuitBreaker(name = "getStudentByNumberCircuitBreaker", fallbackMethod = "getStudentFallback")
-    ResponseEntity<StudentIdDto> getStudentByNumber(@PathVariable int studentNumber);
+    ResponseEntity<StudentIdDto> getStudentByNumber(@PathVariable(value = "studentNumber") int studentNumber);
 
     default ResponseEntity<StudentIdDto> getStudentFallback(int studentNumber, Exception exception) {
         logger.info("Student could not found by number " + studentNumber + ", returning default StudentDto object");
